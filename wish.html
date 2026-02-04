@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Just One Question</title>
+
+  <style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: url("https://www.shutterstock.com/image-illustration/field-flowing-stream-beautiful-natural-600nw-2428964117.jpg")
+      no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  /* Bigger & cuter question */
+  h1 {
+    font-family: "Comic Sans MS", "Segoe UI", cursive;
+    font-size: 56px;        /* ⬅ increased size */
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 50px;   /* ⬅ more space below text */
+  }
+
+  .buttons {
+    position: relative;
+    width: 420px;          /* ⬅ wider area for clean spacing */
+    height: 100px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;             /* ⬅ proper space between buttons */
+  }
+
+  button {
+    padding: 16px 44px;    /* ⬅ bigger buttons */
+    font-size: 20px;       /* ⬅ bigger text */
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+  }
+
+  /* Friend button (blue) */
+  .friend {
+    background: #60a5fa;
+    color: #0f172a;
+    z-index: 2;
+  }
+
+  .friend:hover {
+    transform: scale(1.12);
+  }
+
+  /* Stranger button (pink) */
+  .stranger {
+    background: #f9a8d4;
+    color: #831843;
+    position: relative;
+  }
+
+  /* Page B */
+  .pageB {
+    display: none;
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .message {
+    font-size: 20px;
+    line-height: 1.9;
+    color: #111827;
+    max-width: 480px;
+    margin: auto;
+  }
+  .more-btn {
+  margin-top: 30px;
+  padding: 14px 40px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f9a8d4, #86efac);
+  color: #064e3b;
+  transition: transform 0.3s ease;
+}
+
+.more-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Birthday message */
+#birthdayMessage {
+  display: none;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+#birthdayMessage h2 {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #111827;
+  font-family: "Comic Sans MS", "Segoe UI", cursive;
+}
+
+/* Final message */
+#finalMessage {
+  display: none;
+  animation: fadeInUp 1.5s ease forwards;
+  margin-top: 30px;
+}
+
+.final-text {
+  font-size: 28px;
+  line-height: 1.8;
+  color: #111827;
+  max-width: 520px;
+  margin: auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#finalMessage {
+  display: none;
+}
+
+
+    /* =========================
+   FINAL MESSAGE ONLY
+   ========================= */
+
+.final-letter {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 45px 55px;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+
+  font-size: 22px;
+  line-height: 1.9;
+  color: #222;
+
+  text-align: justify;
+  word-spacing: 2px;
+
+  /* 🔽 IMPORTANT FIX */
+  max-height: 75vh;        /* fits inside screen */
+  overflow-y: auto;        /* enables scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  .final-letter {
+    padding: 30px 22px;
+    font-size: 20px;
+    text-align: left;
+  }
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+  <!-- Page A -->
+  <div class="container" id="pageA">
+    <h1>Who am I?</h1>
+    <div class="buttons">
+      <button class="friend" onclick="showPageB()">Friend</button>
+      <button class="stranger" id="strangerBtn">Stranger</button>
+    </div>
+  </div>
+
+  <!-- Page B -->
+<div class="container pageB" id="pageB">
+
+  <!-- Old message -->
+  <div id="oldMessage">
+    <p class="message">
+      You knew the answer already.<br><br>
+      Even if time changes things,  
+      even if we don’t talk like before —  
+      some people never really become strangers.
+    </p>
+
+    <button class="more-btn" onclick="startSequence()">
+      Wanna know more 💚
+    </button>
+  </div>
+
+  <!-- Birthday message -->
+  <div id="birthdayMessage">
+    <h2>Happy Birthday<br>My Dear Friend 🎉</h2>
+  </div>
+
+  <div id="finalMessage" class="final-letter">
+
+    Heyy Aravinendh,<br><br>
+
+    Wish you a very, very happy birthday 🎉  
+    I hope you enjoy reading this.<br><br>
+
+    I wish you more success in your life.  
+    I wish you growth, glow, joy, and peace always.  
+    I wish you a great life ahead, filled with good things —  
+    because you truly deserve all the good things in your life.<br><br>
+
+    For me, you are a surprise friend,  
+    because you came into my life when I never expected you to.  
+    You were there for me whenever I felt low,  
+    and I’m so, so grateful for that.  
+    Thank you for being there for me.  
+    I don’t want to lose such a good friend in my life.<br><br>
+
+    You proved to me that I deserve good people around me.  
+    You were there for me whenever I needed someone to listen.  
+    Thank you so much for that — I’m forever grateful.  
+    You are such a good and kind-hearted friend.<br><br>
+
+    Thank you for tolerating me 😄<br><br>
+
+    Heyy, I don’t have any gifts to give you this year,  
+    except my friendship.  
+    So I promise I’ll always be a good friend to you.  
+    I hope this good and genuine friendship continues.<br><br>
+
+    I always wonder how we have so many things in common,  
+    and maybe that’s the reason that connects us.<br><br>
+
+    I’ll support you and motivate you whenever you need me.  
+    You deserve more and more in life.<br><br>
+
+    You know, 2/5 (Feb 5) has always been a rollercoaster day for me,  
+    because I’ve faced many phases of life on this date.  
+    But it’s a surprise again that Feb 5 is your birthday too.  
+    And I never expected that the Northern Lights would be your favorite!<br><br>
+
+    Seri… romba professional-aa poiduchu la en wish 😂  
+    Ippo thirumba en style-ku varen 😄<br><br>
+
+    Ennadhan nee enoda nalla friend-aa irundhalum,  
+    I will torture you and tease you if I get a chance.  
+    Avlo normal-aa summa vitra maaten 😌  
+    Because I enjoy talking to you — torturing too!!<br><br>
+
+    Irundhaalum, nee enakkaaga romba neram spend panniruka.  
+    I don’t know who else would do that for me.  
+    Adhukku romba thanks!<br><br>
+
+    Nee enna judge panna maata.  
+    En ella polambalayum keturuka — adhukkum nandri.<br><br>
+
+    Nee eppovume happy-aa irukkanum 🤍<br><br>
+
+    I don’t know whether this bond will last forever or not,  
+    but I want to wish you on every birthday of yours.  
+    I hope you read this on all your birthdays.  
+    I’m sure you’ll remember me on one of your future birthdays —  
+    even when you become a grandpa 😄<br><br>
+
+    I hope I never crossed your boundaries  
+    and that I respect your space, as you wish 😂😂  
+    You deserve even better friends than me!<br><br>
+
+    Thank you for being there for me.<br><br>
+
+    All the best — have a great life ahead!  
+    I wish you get good friends and a partner,  
+    exactly the way you want in your life.<br><br>
+
+    Once again,<br>
+    <strong>இனிய பிறந்தநாள் நல்வாழ்த்துகள் 🎉</strong><br><br>
+
+    <em>
+      “A true friend is someone who comes into your life unexpectedly  
+      and stays when they don’t have to.”
+    </em><br><br>
+
+    Thank you!!<br><br>
+
+    <span style="font-size:16px; opacity:0.8;">
+      (P.S: I think this deserves at least one small smile 😊)
+    </span>
+</div>
+
+
+</div>
+
+
+
+  <script>
+    const stranger = document.getElementById("strangerBtn");
+
+    function runAwayTwice() {
+      const x1 = Math.random() * 800 - 400;
+      const y1 = Math.random() * 500 - 250;
+      stranger.style.transform = `translate(${x1}px, ${y1}px)`;
+
+      setTimeout(() => {
+        const x2 = Math.random() * 800 - 400;
+        const y2 = Math.random() * 500 - 250;
+        stranger.style.transform = `translate(${x2}px, ${y2}px)`;
+      }, 200);
+    }
+
+    stranger.addEventListener("mouseover", runAwayTwice);
+    stranger.addEventListener("click", runAwayTwice);
+
+    function showPageB() {
+      document.getElementById("pageA").style.display = "none";
+      document.getElementById("pageB").style.display = "block";
+    }
+  </script>
+  <script>
+  function showBirthday() {
+    const oldMsg = document.getElementById("oldMessage");
+    const birthday = document.getElementById("birthdayMessage");
+
+    oldMsg.style.transform = "translateY(-40px)";
+    oldMsg.style.opacity = "0";
+
+    setTimeout(() => {
+      oldMsg.style.display = "none";
+      birthday.style.display = "block";
+    }, 800);
+  }
+</script>
+
+<script>
+  function startSequence() {
+    const oldMsg = document.getElementById("oldMessage");
+    const birthday = document.getElementById("birthdayMessage");
+    const finalMsg = document.getElementById("finalMessage");
+
+    // Hide old message
+    oldMsg.style.display = "none";
+
+    // Show birthday message
+    birthday.style.display = "block";
+
+    // After 6 seconds, switch to final message
+    setTimeout(() => {
+      birthday.style.display = "none";
+      finalMsg.style.display = "block";
+    }, 1000); // 6 seconds
+  }
+</script>
+
+
+
+</body>
+</html>
